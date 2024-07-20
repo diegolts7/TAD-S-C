@@ -3,10 +3,55 @@
 
 int main()
 {
+    int parada = 0;
+    do
+    {
+        int opcao = 0;
 
-    AdicionarProduto(2031, "Uva", "Alimento", 3);
+        printf("\n1. Adicionar um produto\n2. Remover um produto\n3. Mostrar produtos\n4. Sair\n");
+        getchar();
+        printf("O que você deseja : ");
+        scanf("%d", &opcao);
+
+        while (opcao < 1 && opcao > 4)
+        {
+            printf("Digite uma opção válida : ");
+            scanf("%d", &opcao);
+        }
+
+        if (opcao == 1)
+        {
+            int id = 0, quantidade = 0;
+            char categoria[50], nome[50];
+            printf("Digite o nome do produto :");
+            scanf("%s", nome);
+
+            printf("Digite a categoria do produto :");
+            scanf("%s", categoria);
+            printf("Digite o quantidade do produto :");
+            scanf("%d", &quantidade);
+            printf("Digite o Id do produto :");
+            scanf("%d", &id);
+            AdicionarProduto(id, nome, categoria, quantidade);
+        }
+        else if (opcao == 2)
+        {
+        }
+        else if (opcao == 3)
+        {
+            MostrarProdutos();
+        }
+        else
+        {
+            parada = 1;
+            continue;
+        }
+
+    } while (parada != 1);
+
+    /*AdicionarProduto(2031, "Uva", "Alimento", 3);
     AdicionarProduto(2042, "Maca", "Alimento", 9);
     AdicionarProduto(2045, "Couve", "Alimento", 5);
-    RemoverProduto(2042);
+    RemoverProduto(2042);*/
     return 0;
 }
