@@ -12,6 +12,8 @@ typedef struct Produto
 
 } produto;
 
-produto *AdicionarProduto(produto *lista, int id, char nome[], char categoria[], int qtd);
+void AdicionarProduto(int id, char nome[], char categoria[], int qtd);
 produto *CriarProduto();
-void MostrarProdutos(produto *lista);
+void MostrarProdutos();
+void RemoverProduto(int id);
+produto *BuscarProdutoID(int id);

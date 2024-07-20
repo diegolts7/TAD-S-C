@@ -3,10 +3,10 @@
 
 int main()
 {
-    produto *MinhaLista = NULL;
 
-    MinhaLista = AdicionarProduto(MinhaLista, 2031, "Uva", "Alimento", 3);
-    MinhaLista = AdicionarProduto(MinhaLista, 2042, "Maca", "Alimento", 9);
-    MostrarProdutos(MinhaLista);
+    AdicionarProduto(2031, "Uva", "Alimento", 3);
+    AdicionarProduto(2042, "Maca", "Alimento", 9);
+    AdicionarProduto(2045, "Couve", "Alimento", 5);
+    RemoverProduto(2042);
     return 0;
 }
