@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "myLib.h"
 
 int main()
@@ -23,8 +24,11 @@ int main()
         {
             int id = 0, quantidade = 0;
             char categoria[50], nome[50];
-            printf("Digite o nome do produto :");
-            scanf("%s", nome);
+
+            limparBuffer();
+
+            printf("Digite o nome do produto : ");
+            scanf("%[^\n]", nome);
 
             printf("Digite a categoria do produto :");
             scanf("%s", categoria);
@@ -32,10 +36,16 @@ int main()
             scanf("%d", &quantidade);
             printf("Digite o Id do produto :");
             scanf("%d", &id);
+
             AdicionarProduto(id, nome, categoria, quantidade);
         }
         else if (opcao == 2)
         {
+            int idProdutoRemovido = 0;
+            printf("Digite o id do produto a ser removido : ");
+            scanf("%d", &idProdutoRemovido);
+
+            RemoverProduto(idProdutoRemovido);
         }
         else if (opcao == 3)
         {

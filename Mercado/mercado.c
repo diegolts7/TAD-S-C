@@ -70,42 +70,57 @@ void RemoverProduto(int id)
 
         if (refer != NULL)
         {
-            if (aux->prox == NULL)
-            {
-                free(refer);
-                Lista = NULL;
-                UltimoProduto = NULL;
-            }
-            else
-            {
-                if (refer->anter == NULL)
-                {
-                    produto *proximo = refer->prox;
+            char opcao = 0;
 
-                    proximo->anter = NULL;
-                    Lista = proximo;
-                    free(refer);
-                }
-                else if (refer->prox == NULL)
-                {
-                    produto *anterior = refer->anter;
+            system("clear");
 
-                    anterior->prox = NULL;
-                    UltimoProduto = anterior;
+            printf("-------------------------------------------------------------------------------------------\n\n");
+            printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", refer->nome, refer->categoria, refer->quantidade, refer->id);
+
+            limparBuffer();
+
+            printf("Confirme para excluir esse produto (y/n) : ");
+            scanf("%c", &opcao);
+
+            if (opcao == 'y' || opcao == 'Y')
+            {
+                if (aux->prox == NULL)
+                {
                     free(refer);
+                    Lista = NULL;
+                    UltimoProduto = NULL;
                 }
                 else
                 {
-                    produto *anterior = refer->anter;
-                    produto *proximo = refer->prox;
-                    anterior->prox = proximo;
-                    proximo->anter = anterior;
-                    free(refer);
-                }
-            }
+                    if (refer->anter == NULL)
+                    {
+                        produto *proximo = refer->prox;
 
-            system("clear");
-            MostrarProdutos();
+                        proximo->anter = NULL;
+                        Lista = proximo;
+                        free(refer);
+                    }
+                    else if (refer->prox == NULL)
+                    {
+                        produto *anterior = refer->anter;
+
+                        anterior->prox = NULL;
+                        UltimoProduto = anterior;
+                        free(refer);
+                    }
+                    else
+                    {
+                        produto *anterior = refer->anter;
+                        produto *proximo = refer->prox;
+                        anterior->prox = proximo;
+                        proximo->anter = anterior;
+                        free(refer);
+                    }
+                }
+
+                system("clear");
+                MostrarProdutos();
+            }
         }
         else
         {
@@ -128,4 +143,11 @@ produto *BuscarProdutoID(int id)
         aux = aux->prox;
     }
     return NULL;
+}
+
+void limparBuffer()
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF)
+        ;
 }
