@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "myLib.h"
+#include "mercado.h"
 
 produto *Lista = NULL;
 produto *UltimoProduto = NULL;
@@ -12,12 +12,27 @@ produto *CriarProduto()
     return NovoProduto;
 }
 
-void AdicionarProduto(int id, char nome[], char categoria[], int qtd)
+void AdicionarProduto()
 {
     produto *ProdutoNovo = CriarProduto();
 
+    int id = 0, quantidade = 0;
+    char categoria[50], nome[50];
+
+    limparBuffer();
+
+    printf("Digite o nome do produto : ");
+    scanf("%[^\n]", nome);
+
+    printf("Digite a categoria do produto :");
+    scanf("%s", categoria);
+    printf("Digite o quantidade do produto :");
+    scanf("%d", &quantidade);
+    printf("Digite o Id do produto :");
+    scanf("%d", &id);
+
     ProdutoNovo->id = id;
-    ProdutoNovo->quantidade = qtd;
+    ProdutoNovo->quantidade = quantidade;
     strcpy(ProdutoNovo->nome, nome);
     strcpy(ProdutoNovo->categoria, categoria);
 
@@ -36,9 +51,11 @@ void AdicionarProduto(int id, char nome[], char categoria[], int qtd)
         ProdutoNovo->prox = NULL;
         UltimoProduto = ProdutoNovo;
     }
+    system("clear");
+
+    system("read -p 'Produto adicionado com sucesso...' var");
 
     system("clear");
-    MostrarProdutos();
 }
 
 void MostrarProdutos()
@@ -117,14 +134,17 @@ void RemoverProduto(int id)
                         free(refer);
                     }
                 }
+                system("clear");
+
+                system("read -p 'Produto removido com sucesso...' var");
 
                 system("clear");
-                MostrarProdutos();
             }
         }
         else
         {
-            printf("Produto não encontrado!!");
+            printf("Produto não encontrado!!\n\n");
+            system("read -p 'Pressione Enter para continuar...' var");
         }
     }
 }

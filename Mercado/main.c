@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "myLib.h"
+#include "mercado.h"
 
 int main()
 {
@@ -9,6 +9,8 @@ int main()
     {
 
         int opcao = 0;
+
+        system("clear");
 
         printf("\n1. Adicionar um produto\n2. Remover um produto\n3. Mostrar produtos\n4. Pesquisar produtos\n5. Sair\n");
         getchar();
@@ -23,52 +25,38 @@ int main()
 
         system("clear");
 
-        if (opcao == 1)
+        switch (opcao)
         {
-            int id = 0, quantidade = 0;
-            char categoria[50], nome[50];
+        case 1:
 
-            limparBuffer();
+            AdicionarProduto();
+            break;
 
-            printf("Digite o nome do produto : ");
-            scanf("%[^\n]", nome);
+        case 2:
 
-            printf("Digite a categoria do produto :");
-            scanf("%s", categoria);
-            printf("Digite o quantidade do produto :");
-            scanf("%d", &quantidade);
-            printf("Digite o Id do produto :");
-            scanf("%d", &id);
-
-            AdicionarProduto(id, nome, categoria, quantidade);
-        }
-        else if (opcao == 2)
-        {
             int idProdutoRemovido = 0;
-            printf("Digite o id do produto a ser removido : ");
-            scanf("%d", &idProdutoRemovido);
-
-            RemoverProduto(idProdutoRemovido);
-        }
-        else if (opcao == 3)
-        {
             MostrarProdutos();
-        }
-        else if (opcao == 4)
-        {
+            printf("\n\nDigite o id do produto a ser removido : ");
+            scanf("%d", &idProdutoRemovido);
+            RemoverProduto(idProdutoRemovido);
+            break;
+
+        case 3:
+
+            MostrarProdutos();
+            printf("\n\n");
+            system("read -p 'Pressione Enter para continuar...' var");
+            break;
+
+        case 4:
             Buscar();
-        }
-        else
-        {
+            break;
+
+        default:
             parada = 1;
-            continue;
         }
 
     } while (parada != 1);
 
-    /*AdicionarProduto(2031, "Uva", "Alimento", 3);
-    AdicionarProduto(2042, "Maca", "Alimento", 9);
-    AdicionarProduto(2045, "Couve", "Alimento", 5);
-    RemoverProduto(2042);*/
     return 0;
 }

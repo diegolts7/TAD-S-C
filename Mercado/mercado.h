@@ -12,7 +12,7 @@ typedef struct Produto
 
 } produto;
 
-void AdicionarProduto(int id, char nome[], char categoria[], int qtd);
+void AdicionarProduto();
 produto *CriarProduto();
 void MostrarProdutos();
 void RemoverProduto(int id);
