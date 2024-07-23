@@ -12,16 +12,10 @@ int main()
 
         system("clear");
 
-        printf("\n1. Adicionar um produto\n2. Remover um produto\n3. Mostrar produtos\n4. Pesquisar produtos\n5. Sair\n");
+        printf("\n1. Adicionar um produto\n2. Remover um produto\n3. Mostrar produtos\n4. Pesquisar produtos\n5. Atualizar produto\n6. Qualquer outro numero para sair\n");
         getchar();
         printf("O que você deseja : ");
         scanf("%d", &opcao);
-
-        while (opcao < 1 || opcao > 5)
-        {
-            printf("Digite uma opção válida : ");
-            scanf("%d", &opcao);
-        }
 
         system("clear");
 
@@ -50,6 +44,10 @@ int main()
 
         case 4:
             Buscar();
+            break;
+
+        case 5:
+            AtualizarProduto();
             break;
 
         default:

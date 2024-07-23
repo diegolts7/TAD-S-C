@@ -28,8 +28,21 @@ void AdicionarProduto()
     scanf("%s", categoria);
     printf("Digite o quantidade do produto :");
     scanf("%d", &quantidade);
+
+    while (quantidade <= 0)
+    {
+        printf("Digite uma quantidade válida: ");
+        scanf("%d", &quantidade);
+    }
+
     printf("Digite o Id do produto :");
     scanf("%d", &id);
+
+    while (id < 0)
+    {
+        printf("Digite um id válido: ");
+        scanf("%d", &id);
+    }
 
     ProdutoNovo->id = id;
     ProdutoNovo->quantidade = quantidade;
@@ -66,11 +79,16 @@ void MostrarProdutos()
 
     while (aux != NULL)
     {
-        printf("-------------------------------------------------------------------------------------------\n\n");
-        printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", aux->nome, aux->categoria, aux->quantidade, aux->id);
+        MostrarUnicoProduto(aux);
 
         aux = aux->prox;
     }
+}
+
+void MostrarUnicoProduto(produto *item)
+{
+    printf("-------------------------------------------------------------------------------------------\n\n");
+    printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", item->nome, item->categoria, item->quantidade, item->id);
 }
 
 void RemoverProduto(int id)
@@ -91,8 +109,7 @@ void RemoverProduto(int id)
 
             system("clear");
 
-            printf("-------------------------------------------------------------------------------------------\n\n");
-            printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", refer->nome, refer->categoria, refer->quantidade, refer->id);
+            MostrarUnicoProduto(refer);
 
             limparBuffer();
 
@@ -176,8 +193,7 @@ void BuscarProdutoNome(char nome[])
 
         if (strcmp(aux->nome, nome) == 0)
         {
-            printf("\n\n-------------------------------------------------------------------------------------------\n\n");
-            printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", aux->nome, aux->categoria, aux->quantidade, aux->id);
+            MostrarUnicoProduto(aux);
             cont++;
         }
         aux = aux->prox;
@@ -227,13 +243,76 @@ void Buscar()
 
         if (resultadoPesquisaId != NULL)
         {
-            printf("\n\n-------------------------------------------------------------------------------------------\n\n");
-            printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", resultadoPesquisaId->nome, resultadoPesquisaId->categoria, resultadoPesquisaId->quantidade, resultadoPesquisaId->id);
+            MostrarUnicoProduto(resultadoPesquisaId);
         }
         else
         {
             printf("\nSem produtos encontrados!!!\n");
         }
+    }
+}
+
+void AtualizarProduto()
+{
+    int id = 0;
+
+    MostrarProdutos();
+    printf("Informe o id do produto que deseja atualizar: ");
+    scanf("%d", &id);
+
+    while (id < 0)
+    {
+        printf("Informe um id válido: ");
+        scanf("%d", &id);
+    }
+
+    system("clear");
+
+    produto *aux = BuscarProdutoID(id);
+
+    if (aux != NULL)
+    {
+
+        int quantidade = 0;
+        char categoria[50], nome[50];
+
+        MostrarUnicoProduto(aux);
+
+        limparBuffer();
+
+        printf("Digite o novo nome do produto (digite n se não dejesa alterar essa opção) : ");
+        scanf("%[^\n]", nome);
+
+        if (strcmp(nome, "n") != 0)
+        {
+            strcpy(aux->nome, nome);
+        }
+
+        printf("Digite a categoria do produto (digite n se não dejesa alterar essa opção) :");
+        scanf("%s", categoria);
+
+        if (strcmp(categoria, "n") != 0)
+        {
+            printf("\n\n%d\n\n", strcmp(categoria, "n") != 0);
+            strcpy(aux->categoria, categoria);
+        }
+
+        printf("Digite o quantidade do produto (digite 0 se não dejesa alterar essa opção) :");
+        scanf("%d", &quantidade);
+
+        if (quantidade > 0 || quantidade > 0)
+        {
+            aux->quantidade = quantidade;
+        }
+
+        system("clear");
+        printf("Produto alterado com sucesso!!\n\n");
+        MostrarUnicoProduto(aux);
+        system("read -p 'Pressione Enter para continuar...' var");
+    }
+    else
+    {
+        system("read -p 'Produto não encontrador...' var");
     }
 }
 

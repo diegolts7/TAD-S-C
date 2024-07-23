@@ -20,3 +20,5 @@ produto *BuscarProdutoID(int id);
 void limparBuffer();
 void BuscarProdutoNome(char nome[]);
 void Buscar();
+void AtualizarProduto();
+void MostrarUnicoProduto(produto *item);
