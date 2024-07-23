@@ -7,18 +7,21 @@ int main()
     int parada = 0;
     do
     {
+
         int opcao = 0;
 
-        printf("\n1. Adicionar um produto\n2. Remover um produto\n3. Mostrar produtos\n4. Sair\n");
+        printf("\n1. Adicionar um produto\n2. Remover um produto\n3. Mostrar produtos\n4. Pesquisar produtos\n5. Sair\n");
         getchar();
         printf("O que você deseja : ");
         scanf("%d", &opcao);
 
-        while (opcao < 1 && opcao > 4)
+        while (opcao < 1 || opcao > 5)
         {
             printf("Digite uma opção válida : ");
             scanf("%d", &opcao);
         }
+
+        system("clear");
 
         if (opcao == 1)
         {
@@ -50,6 +53,10 @@ int main()
         else if (opcao == 3)
         {
             MostrarProdutos();
+        }
+        else if (opcao == 4)
+        {
+            Buscar();
         }
         else
         {

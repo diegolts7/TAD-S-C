@@ -145,6 +145,78 @@ produto *BuscarProdutoID(int id)
     return NULL;
 }
 
+void BuscarProdutoNome(char nome[])
+{
+
+    produto *aux = Lista;
+    int cont = 0;
+
+    while (aux != NULL)
+    {
+
+        if (strcmp(aux->nome, nome) == 0)
+        {
+            printf("\n\n-------------------------------------------------------------------------------------------\n\n");
+            printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", aux->nome, aux->categoria, aux->quantidade, aux->id);
+            cont++;
+        }
+        aux = aux->prox;
+    }
+    if (cont == 0)
+    {
+        printf("\nSem produtos encontrados\n");
+    }
+}
+
+void Buscar()
+{
+
+    int opcaoPesquisa = 0;
+
+    printf("1. Nome\n2. Id\nPor qual opção deseja pesquisar: ");
+    scanf("%d", &opcaoPesquisa);
+
+    while (opcaoPesquisa < 1 || opcaoPesquisa > 2)
+    {
+        printf("Digite uma opção válida: ");
+        scanf("%d", &opcaoPesquisa);
+    }
+
+    system("clear");
+
+    if (opcaoPesquisa == 1)
+    {
+
+        char nome[50];
+
+        limparBuffer();
+
+        printf("Digite o nome do produto que deseja encontrar : ");
+        scanf("%[^\n]", nome);
+
+        BuscarProdutoNome(nome);
+    }
+    else
+    {
+        int id;
+
+        printf("Digite o Id do produto que deseja encontrar : ");
+        scanf("%d", &id);
+
+        produto *resultadoPesquisaId = BuscarProdutoID(id);
+
+        if (resultadoPesquisaId != NULL)
+        {
+            printf("\n\n-------------------------------------------------------------------------------------------\n\n");
+            printf("Nome: %s\nCategoria: %s\nQuantidade: %d\nId: %d\n\n", resultadoPesquisaId->nome, resultadoPesquisaId->categoria, resultadoPesquisaId->quantidade, resultadoPesquisaId->id);
+        }
+        else
+        {
+            printf("\nSem produtos encontrados!!!\n");
+        }
+    }
+}
+
 void limparBuffer()
 {
     int c;

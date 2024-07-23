@@ -18,3 +18,5 @@ void MostrarProdutos();
 void RemoverProduto(int id);
 produto *BuscarProdutoID(int id);
 void limparBuffer();
+void BuscarProdutoNome(char nome[]);
+void Buscar();
