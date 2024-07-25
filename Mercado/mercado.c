@@ -250,6 +250,8 @@ void Buscar()
             printf("\nSem produtos encontrados!!!\n");
         }
     }
+
+    system("read -p 'Pressione Enter para continuar...' var");
 }
 
 void AtualizarProduto()
