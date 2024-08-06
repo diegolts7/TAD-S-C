@@ -295,7 +295,6 @@ void AtualizarProduto()
 
         if (strcmp(categoria, "n") != 0)
         {
-            printf("\n\n%d\n\n", strcmp(categoria, "n") != 0);
             strcpy(aux->categoria, categoria);
         }
 
