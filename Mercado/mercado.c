@@ -323,3 +323,29 @@ void limparBuffer()
     while ((c = getchar()) != '\n' && c != EOF)
         ;
 }
+
+void escreverCSV(char *arquivo)
+{
+    FILE *file = fopen(arquivo, "w");
+
+    // Verifica se o arquivo foi aberto corretamente
+    if (!file)
+    {
+        fprintf(stderr, "Erro ao criar o arquivo.\n");
+        return;
+    }
+
+    // Escreve o cabeçalho no arquivo CSV
+    fprintf(file, "Id,Nome,Categoria,Quantidade\n");
+
+    // Escreve os dados das pessoas no arquivo CSV
+    produto *aux = Lista;
+    while (aux != NULL)
+    {
+        fprintf(file, "%d,%s,%s,%d\n", aux->id, aux->nome, aux->categoria, aux->quantidade);
+        aux = aux->prox;
+    }
+
+    // Fecha o arquivo
+    fclose(file);
+}

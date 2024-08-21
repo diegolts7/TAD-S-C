@@ -11,6 +11,7 @@ int main(void)
     listaPessoas = inserirPessoaFinal(listaPessoas, "chico", 'm', 25);
     listaPessoas = deletaPessoa(listaPessoas);
     imprimirPessoas(listaPessoas);
+    listaPessoas = inserirPessoaFinal(listaPessoas, "Diego", 'm', 26);
 
     return 0;
 }

@@ -22,3 +22,4 @@ void BuscarProdutoNome(char nome[]);
 void Buscar();
 void AtualizarProduto();
 void MostrarUnicoProduto(produto *item);
+void escreverCSV(char *arquivo);

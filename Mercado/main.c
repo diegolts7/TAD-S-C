@@ -5,6 +5,7 @@
 int main()
 {
     int parada = 0;
+    char *arquivo = "produtos.csv";
     do
     {
 
@@ -52,6 +53,7 @@ int main()
 
         default:
             parada = 1;
+            escreverCSV(arquivo);
         }
 
     } while (parada != 1);
