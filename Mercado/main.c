@@ -6,6 +6,7 @@ int main()
 {
     int parada = 0;
     char *arquivo = "produtos.csv";
+    lerCSV(arquivo);
     do
     {
 
@@ -24,7 +25,7 @@ int main()
         {
         case 1:
 
-            AdicionarProduto();
+            pegarDadosProduto();
             break;
 
         case 2:

@@ -12,10 +12,8 @@ produto *CriarProduto()
     return NovoProduto;
 }
 
-void AdicionarProduto()
+void pegarDadosProduto()
 {
-    produto *ProdutoNovo = CriarProduto();
-
     int id = 0, quantidade = 0;
     char categoria[50], nome[50];
 
@@ -43,6 +41,12 @@ void AdicionarProduto()
         printf("Digite um id válido: ");
         scanf("%d", &id);
     }
+    AdicionarProduto(id, quantidade, nome, categoria, 0);
+}
+
+void AdicionarProduto(int id, int quantidade, char nome[], char categoria[], int isBeforeStart)
+{
+    produto *ProdutoNovo = CriarProduto();
 
     ProdutoNovo->id = id;
     ProdutoNovo->quantidade = quantidade;
@@ -63,6 +67,11 @@ void AdicionarProduto()
         ProdutoNovo->anter = aux;
         ProdutoNovo->prox = NULL;
         UltimoProduto = ProdutoNovo;
+    }
+
+    if (isBeforeStart == 1)
+    {
+        return;
     }
     system("clear");
 
@@ -344,6 +353,37 @@ void escreverCSV(char *arquivo)
     {
         fprintf(file, "%d,%s,%s,%d\n", aux->id, aux->nome, aux->categoria, aux->quantidade);
         aux = aux->prox;
+    }
+
+    // Fecha o arquivo
+    fclose(file);
+}
+
+void lerCSV(char *arquivo)
+{
+    FILE *file = fopen(arquivo, "r");
+    char linha[100];
+    //
+    // Verifica se o arquivo foi aberto corretamente
+    if (!file)
+    {
+        fprintf(stderr, "Erro ao abrir o arquivo - Arquivo inexistente.\n");
+        return;
+    }
+
+    // Ignora o cabeçalho
+    fgets(linha, 100, file);
+
+    // Lê e armazena cada linha do arquivo CSV no vetor de structs
+    int id, qtd;
+    char nome[50], categoria[50];
+
+    while (fgets(linha, 100, file) != NULL)
+    {
+        // Extrai os dados da linha
+
+        sscanf(linha, "%d,%[^,],%[^,],%d", &id, nome, categoria, &qtd);
+        AdicionarProduto(id, qtd, nome, categoria, 1);
     }
 
     // Fecha o arquivo

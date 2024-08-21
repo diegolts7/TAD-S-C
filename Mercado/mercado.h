@@ -12,7 +12,8 @@ typedef struct Produto
 
 } produto;
 
-void AdicionarProduto();
+void AdicionarProduto(int id, int quantidade, char nome[], char categoria[], int isBeforeStart);
+void pegarDadosProduto();
 produto *CriarProduto();
 void MostrarProdutos();
 void RemoverProduto(int id);
@@ -23,3 +24,4 @@ void Buscar();
 void AtualizarProduto();
 void MostrarUnicoProduto(produto *item);
 void escreverCSV(char *arquivo);
+void lerCSV(char *arquivo);
